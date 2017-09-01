@@ -36,14 +36,7 @@
         <td><%= batting.runsBattedIn %></td>
         <td><%= batting.stolenBases %></td>
         <td><%= batting.caughtStealing %></td>
-        <td><%= link_to 'Show', batting %></td>
-
-        <td><%= link_to 'Destroy', batting, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Batting', new_player_batting_path %>

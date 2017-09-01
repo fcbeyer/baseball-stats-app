@@ -14,10 +14,9 @@ players_parsed.each do |row|
   player = Player.new
   player.firstName = row['nameFirst']
   player.lastName = row['nameLast']
-  player.birthYear = row['birthYear']
+  player.birthYear = row['birthYear'].to_i
   player.playerID = row['playerID']
   player.save
-  #puts "#{player.firstName}, #{player.lastName} saved"
 end
 
 puts "There are now #{Player.count} rows in the players table"
@@ -27,9 +26,8 @@ puts "There are now #{Player.count} rows in the players table"
 csv_batting = File.read(Rails.root.join('lib', 'seeds', 'batting.csv'))
 batting_parsed = CSV.parse(csv_batting, :headers => true, :encoding => 'ISO-8859-1')
 batting_parsed.each do |row|
-  {"playerID"=>"zumayjo01", "yearID"=>"2007", "league"=>"AL", "teamID"=>"DET", "G"=>"28", "AB"=>nil, "R"=>nil, "H"=>nil, "2B"=>nil, "3B"=>nil, "HR"=>nil, "RBI"=>nil, "SB"=>nil, "CS"=>nil}
   player = Player.find_by(playerID: row['playerID'])
-  player.battings.create(playerID: row['playerID'], yearID: row['yearID'], league: row['league'], teamID: row['teamID'],
+  player.battings.create(playerID: row['playerID'], yearID: row['yearID'].to_i, league: row['league'], teamID: row['teamID'],
     gamesPlayed: row['G'], atBats: row['AB'], runs: row['R'], hits: row['H'], doubles: row['2B'], triples: row['3B'],
     homeruns: row['HR'], runsBattedIn: row['RBI'], stolenBases: row['SB'], caughtStealing: row['CS']);
 end

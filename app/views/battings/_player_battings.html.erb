@@ -1,0 +1,39 @@
+<table class="table table-bordered table-hover table-responsive">
+  <thead class="thead-default">
+  <tr>
+    <th>Year</th>
+    <th>League</th>
+    <th>Team</th>
+    <th>Games Played</th>
+    <th>At Bats</th>
+    <th>Runs</th>
+    <th>Hits</th>
+    <th>Doubles</th>
+    <th>Triples</th>
+    <th>Home Runs</th>
+    <th>Runs Batted In</th>
+    <th>Stolen Bases</th>
+    <th>Caught Stealing</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @player.battings.each.each do |batting| %>
+      <tr>
+        <td><%= batting.yearID %></td>
+        <td><%= batting.league %></td>
+        <td><%= batting.teamID %></td>
+        <td><%= batting.gamesPlayed %></td>
+        <td><%= batting.atBats %></td>
+        <td><%= batting.runs %></td>
+        <td><%= batting.hits %></td>
+        <td><%= batting.doubles %></td>
+        <td><%= batting.triples %></td>
+        <td><%= batting.homeruns %></td>
+        <td><%= batting.runsBattedIn %></td>
+        <td><%= batting.stolenBases %></td>
+        <td><%= batting.caughtStealing %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>

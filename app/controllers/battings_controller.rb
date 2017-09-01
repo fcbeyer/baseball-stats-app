@@ -6,9 +6,6 @@ class BattingsController < ApplicationController
   def index
     find_player
     @battings = @current_player.battings
-    puts "duder"
-    puts @battings.first
-    puts "heyer"
   end
 
   # GET /battings/1
