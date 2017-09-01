@@ -1,0 +1,77 @@
+<%= form_with(model: batting, local: true) do |form| %>
+  <% if batting.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(batting.errors.count, "error") %> prohibited this batting from being saved:</h2>
+
+      <ul>
+      <% batting.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :playerID %>
+    <%= form.text_field :playerID, id: :batting_playerID %>
+  </div>
+
+  <div class="field">
+    <%= form.label :yearID %>
+    <%= form.date_select :yearID, id: :batting_yearID %>
+  </div>
+
+  <div class="field">
+    <%= form.label :league %>
+    <%= form.text_field :league, id: :batting_league %>
+  </div>
+
+  <div class="field">
+    <%= form.label :teamID %>
+    <%= form.text_field :teamID, id: :batting_teamID %>
+  </div>
+
+  <div class="field">
+    <%= form.label :gamesPlayed %>
+    <%= form.number_field :gamesPlayed, id: :batting_gamesPlayed %>
+  </div>
+
+  <div class="field">
+    <%= form.label :hits %>
+    <%= form.number_field :hits, id: :batting_hits %>
+  </div>
+
+  <div class="field">
+    <%= form.label :doubles %>
+    <%= form.number_field :doubles, id: :batting_doubles %>
+  </div>
+
+  <div class="field">
+    <%= form.label :triples %>
+    <%= form.number_field :triples, id: :batting_triples %>
+  </div>
+
+  <div class="field">
+    <%= form.label :homeruns %>
+    <%= form.number_field :homeruns, id: :batting_homeruns %>
+  </div>
+
+  <div class="field">
+    <%= form.label :runsBattedIn %>
+    <%= form.number_field :runsBattedIn, id: :batting_runsBattedIn %>
+  </div>
+
+  <div class="field">
+    <%= form.label :stolenBases %>
+    <%= form.number_field :stolenBases, id: :batting_stolenBases %>
+  </div>
+
+  <div class="field">
+    <%= form.label :caughtStealing %>
+    <%= form.number_field :caughtStealing, id: :batting_caughtStealing %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

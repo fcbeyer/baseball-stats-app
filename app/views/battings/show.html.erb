@@ -1,0 +1,64 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Playerid:</strong>
+  <%= @batting.playerID %>
+</p>
+
+<p>
+  <strong>Yearid:</strong>
+  <%= @batting.yearID %>
+</p>
+
+<p>
+  <strong>League:</strong>
+  <%= @batting.league %>
+</p>
+
+<p>
+  <strong>Teamid:</strong>
+  <%= @batting.teamID %>
+</p>
+
+<p>
+  <strong>Gamesplayed:</strong>
+  <%= @batting.gamesPlayed %>
+</p>
+
+<p>
+  <strong>Hits:</strong>
+  <%= @batting.hits %>
+</p>
+
+<p>
+  <strong>Doubles:</strong>
+  <%= @batting.doubles %>
+</p>
+
+<p>
+  <strong>Triples:</strong>
+  <%= @batting.triples %>
+</p>
+
+<p>
+  <strong>Homeruns:</strong>
+  <%= @batting.homeruns %>
+</p>
+
+<p>
+  <strong>Runsbattedin:</strong>
+  <%= @batting.runsBattedIn %>
+</p>
+
+<p>
+  <strong>Stolenbases:</strong>
+  <%= @batting.stolenBases %>
+</p>
+
+<p>
+  <strong>Caughtstealing:</strong>
+  <%= @batting.caughtStealing %>
+</p>
+
+<%= link_to 'Edit', edit_batting_path(@batting) %> |
+<%= link_to 'Back', battings_path %>
