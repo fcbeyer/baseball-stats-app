@@ -4,16 +4,18 @@
     <th>Year</th>
     <th>League</th>
     <th>Team</th>
-    <th>Games Played</th>
-    <th>At Bats</th>
+    <th>GP</th>
+    <th>AB</th>
     <th>Runs</th>
     <th>Hits</th>
-    <th>Doubles</th>
-    <th>Triples</th>
-    <th>Home Runs</th>
-    <th>Runs Batted In</th>
-    <th>Stolen Bases</th>
-    <th>Caught Stealing</th>
+    <th>2B</th>
+    <th>3B</th>
+    <th>HRs</th>
+    <th>RBIs</th>
+    <th>SB</th>
+    <th>CS</th>
+    <th>BA</th>
+    <th>SP</th>
   </tr>
   </thead>
 
@@ -33,6 +35,8 @@
         <td><%= batting.runsBattedIn %></td>
         <td><%= batting.stolenBases %></td>
         <td><%= batting.caughtStealing %></td>
+        <td> <%= calculate_season_batting_average(batting) %></td>
+        <td> <%= calculate_season_slugging_percentage(batting) %></td>
       </tr>
   <% end %>
   </tbody>
