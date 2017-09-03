@@ -18,14 +18,14 @@ class BattingsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create batting" do
     assert_difference('Batting.count') do
-      post player_battings_url, params: { batting: { caughtStealing: @batting.caughtStealing, doubles: @batting.doubles, gamesPlayed: @batting.gamesPlayed, hits: @batting.hits, homeruns: @batting.homeruns, league: @batting.league, playerID: @batting.playerID, runsBattedIn: @batting.runsBattedIn, stolenBases: @batting.stolenBases, teamID: @batting.teamID, triples: @batting.triples, yearID: @batting.yearID } }
+      post player_battings_url(@player), params: { player_id: @player.id, batting: { caughtStealing: @batting.caughtStealing, doubles: @batting.doubles, gamesPlayed: @batting.gamesPlayed, hits: @batting.hits, homeruns: @batting.homeruns, league: @batting.league, playerID: @batting.playerID, runsBattedIn: @batting.runsBattedIn, stolenBases: @batting.stolenBases, teamID: @batting.teamID, triples: @batting.triples, yearID: @batting.yearID } }
     end
 
     assert_redirected_to batting_url(Batting.last)
   end
 
   test "should show batting" do
-    get player_batting_url(@batting)
+    get player_batting_url(@player, @batting)
     assert_response :success
   end
 

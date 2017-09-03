@@ -11,6 +11,7 @@ class BattingsController < ApplicationController
   # GET /battings/1
   # GET /battings/1.json
   def show
+    find_player
   end
 
   # GET /battings/new

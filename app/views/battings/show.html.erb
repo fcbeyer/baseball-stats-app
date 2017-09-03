@@ -60,5 +60,5 @@
   <%= @batting.caughtStealing %>
 </p>
 
-<%= link_to 'Edit', edit_batting_path(@batting) %> |
-<%= link_to 'Back', battings_path %>
+<%= link_to 'Edit', edit_player_batting_path(@current_player, @batting) %> |
+<%= link_to 'Back', player_battings_path(@current_player) %>
