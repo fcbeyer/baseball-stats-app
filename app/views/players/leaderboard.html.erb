@@ -11,6 +11,8 @@
       <%= select "filter", "league", options_for_select(leagueOptions, selected: get_league_filter), {prompt: 'All'}, onchange: "$('#filter').submit();" %>
       <%= label_tag "Season" %>
       <%= select "filter", "season", options_for_select(seasonOptions, selected: get_season_filter), {prompt: 'All'}, onchange: "$('#filter').submit();" %>
+      <%= label_tag "Career" %>
+      <%= select "filter", "career", options_for_select(['Yes'], selected: get_career_filter), {prompt: 'No'}, onchange: "$('#filter').submit();" %>
   <% end %>
   <!-- leaderboard chart code -->
   <table class="table table-bordered table-responsive table-sm">

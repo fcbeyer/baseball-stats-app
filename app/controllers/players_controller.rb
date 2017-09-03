@@ -62,7 +62,8 @@ class PlayersController < ApplicationController
   end
 
   def leaderboard
-    @battings = find_battings_from_params
+    #@battings = Batting.all.group(:player_id)
+    @battings = (params[:filter] && !params[:filter][:career].empty?) ? create_career_battings : find_battings_from_params
     @battings = @battings.sort do |a, b|
       aBA = calculate_season_batting_average(a)
       bBA = calculate_season_batting_average(b)
@@ -100,6 +101,10 @@ class PlayersController < ApplicationController
       @player = Player.find(params[:id])
     end
 
+    def create_career_battings
+      grouped_data = Batting.all.group(:player_id)
+    end
+
     def find_battings_from_params
       if (params[:filter])
         teamParam = params[:filter][:team]
@@ -134,6 +139,10 @@ class PlayersController < ApplicationController
       else
         Batting.all
       end
+    end
+
+    def sort_by_batting_average(player1, player2)
+
     end
 
     def sort_by_slugging_percentage(player1, player2)
