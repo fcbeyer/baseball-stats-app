@@ -119,8 +119,6 @@ class PlayersController < ApplicationController
     end
 
     def calculate_season_batting_average(batting)
-      puts "this is batting"
-      puts batting.inspect
       #total hits (singles, double, triples, home runs) ÷ At Bats
       if batting.hits and batting.atBats then
         ba = batting.hits.fdiv(batting.atBats)
