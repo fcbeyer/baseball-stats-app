@@ -13,3 +13,13 @@
  * Custom bootstrap variables must be set or imported *before* bootstrap.
  */
 @import "bootstrap";
+@import "players";
+
+.GlobalDiv {
+  padding: 5px;
+}
+
+.FancyHeader{
+  text-align: center;
+  color: orangered
+}

@@ -3,8 +3,6 @@
   <div class="card-body">
     <h4 class="card-title"><%= @player.firstName %> <%= @player.lastName %></h4>
     <h6 class="card-subtitle mb-2 text-muted">Born: <%= @player.birthYear %></h6>
-    <p>Career Batting Average: <%= number_with_precision(calculate_career_batting_average(@player)) %></p>
-    <p>Career Slugging Percentage: <%= number_with_precision(calculate_career_slugging_percentage(@player)) %></p>
     <p class="card-text"><%= render 'battings/player_battings' %></p>
     <a href=<%= edit_player_path(@player) %> class="card-link">Edit</a>
     <a href=<%= players_path %> class="card-link">Back</a>

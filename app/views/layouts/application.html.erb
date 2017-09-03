@@ -18,15 +18,16 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <a class="nav-link" href="leaderboard">Leaderboard</a>
+          <a href=<%= leaderboard_players_path %> class="nav-link">Leaderboard</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/players">Players</a>
+          <a href=<%= players_path %> class="nav-link">Players</a>
         </li>
       </ul>
     </div>
   </nav>
-
-    <%= yield %>
+    <div class="GlobalDiv">
+      <%= yield %>
+    </div>
   </body>
 </html>

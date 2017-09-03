@@ -18,7 +18,6 @@ module PlayersHelper
     return total_bases.fdiv(total_at_bats)
   end
 
-  #need to figure out if how to handle NaN
   def calculate_season_batting_average(batting)
     #total hits (singles, double, triples, home runs) ÷ At Bats
     if batting.hits and batting.atBats then

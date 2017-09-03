@@ -1,7 +1,7 @@
-<table class="table table-bordered table-hover table-responsive">
+<table class="table table-bordered table-responsive table-sm">
   <thead class="thead-default">
   <tr>
-    <th>Year</th>
+    <th>Season</th>
     <th>League</th>
     <th>Team</th>
     <th>GP</th>
@@ -20,7 +20,7 @@
   </thead>
 
   <tbody>
-  <% @player.battings.each.each do |batting| %>
+  <% @player.battings.each do |batting| %>
       <tr>
         <td><%= batting.yearID %></td>
         <td><%= batting.league %></td>
@@ -39,5 +39,22 @@
         <td> <%= calculate_season_slugging_percentage(batting) %></td>
       </tr>
   <% end %>
+      <tr class="CareerTotals">
+        <td></td>
+        <td></td>
+        <td></td>
+        <td><%= @player.battings.map(&:gamesPlayed).compact.sum %></td>
+        <td><%= @player.battings.map(&:atBats).compact.sum %></td>
+        <td><%= @player.battings.map(&:runs).compact.sum %></td>
+        <td><%= @player.battings.map(&:hits).compact.sum %></td>
+        <td><%= @player.battings.map(&:doubles).compact.sum %></td>
+        <td><%= @player.battings.map(&:triples).compact.sum %></td>
+        <td><%= @player.battings.map(&:homeruns).compact.sum %></td>
+        <td><%= @player.battings.map(&:runsBattedIn).compact.sum %></td>
+        <td><%= @player.battings.map(&:stolenBases).compact.sum %></td>
+        <td><%= @player.battings.map(&:caughtStealing).compact.sum %></td>
+        <td><%= number_with_precision(calculate_career_batting_average(@player)) %></td>
+        <td><%= number_with_precision(calculate_career_slugging_percentage(@player)) %></td>
+      </tr>
   </tbody>
 </table>
