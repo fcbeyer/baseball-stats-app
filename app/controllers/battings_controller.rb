@@ -30,7 +30,7 @@ class BattingsController < ApplicationController
   def create
     find_player
     @batting = Batting.new(batting_params)
-
+    @batting.player_id = @current_player.id
     respond_to do |format|
       if @batting.save
         format.html { redirect_to [@current_player, @batting], notice: 'Batting was successfully created.' }
@@ -46,6 +46,7 @@ class BattingsController < ApplicationController
   # PATCH/PUT /battings/1.json
   def update
     find_player
+    @batting.player_id = @current_player.id
     respond_to do |format|
       if @batting.update(batting_params)
         format.html { redirect_to [@current_player, @batting], notice: 'Batting was successfully updated.' }

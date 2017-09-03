@@ -21,7 +21,7 @@ class BattingsControllerTest < ActionDispatch::IntegrationTest
       post player_battings_url(@player), params: { player_id: @player.id, batting: { caughtStealing: @batting.caughtStealing, doubles: @batting.doubles, gamesPlayed: @batting.gamesPlayed, hits: @batting.hits, homeruns: @batting.homeruns, league: @batting.league, playerID: @batting.playerID, runsBattedIn: @batting.runsBattedIn, stolenBases: @batting.stolenBases, teamID: @batting.teamID, triples: @batting.triples, yearID: @batting.yearID } }
     end
 
-    assert_redirected_to batting_url(Batting.last)
+    assert_redirected_to player_batting_url(@player, Batting.last)
   end
 
   test "should show batting" do
