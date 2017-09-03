@@ -1,5 +1,17 @@
 module PlayersHelper
 
+  def get_team_filter
+    params[:filter] && !params[:filter][:team].empty? ? params[:filter][:team] : 'All'
+  end
+
+  def get_league_filter
+    params[:filter] && !params[:filter][:league].empty? ? params[:filter][:league] : 'All'
+  end
+
+  def get_season_filter
+    params[:filter] && !params[:filter][:season].empty? ? params[:filter][:season] : 'All'
+  end
+
   def calculate_career_batting_average(player)
     #total hits (singles, double, triples, home runs) ÷ At Bats
     total_hits = player.battings.map(&:hits).compact.sum

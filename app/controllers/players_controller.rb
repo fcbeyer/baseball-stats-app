@@ -62,8 +62,7 @@ class PlayersController < ApplicationController
   end
 
   def leaderboard
-    @players = Player.all
-    @battings = Batting.all
+    @battings = find_battings_from_params
     @battings = @battings.sort do |a, b|
       aBA = calculate_season_batting_average(a)
       bBA = calculate_season_batting_average(b)
@@ -99,6 +98,42 @@ class PlayersController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_player
       @player = Player.find(params[:id])
+    end
+
+    def find_battings_from_params
+      if (params[:filter])
+        teamParam = params[:filter][:team]
+        leagueParam = params[:filter][:league]
+        seasonParam = params[:filter][:season]
+        case
+          #they are all empty
+          when teamParam.empty? && leagueParam.empty? && seasonParam.empty?
+            Batting.all
+          #team
+          when !teamParam.empty? && leagueParam.empty? && seasonParam.empty?
+            Batting.where(teamID: teamParam)
+          #league
+          when teamParam.empty? && !leagueParam.empty? && seasonParam.empty?
+            Batting.where(league: leagueParam)
+          #season
+          when teamParam.empty? && leagueParam.empty? && !seasonParam.empty?
+            Batting.where(yearID: seasonParam.to_i)
+          #team and season
+          when !teamParam.empty? && leagueParam.empty? && !seasonParam.empty?
+            Batting.where(teamID: teamParam).where(yearID: seasonParam.to_i)
+          #team and league
+          when !teamParam.empty? && !leagueParam.empty? && seasonParam.empty?
+            Batting.where(teamID: teamParam).where(league: leagueParam)
+          #league and season
+          when teamParam.empty? && !leagueParam.empty? && !seasonParam.empty?
+            Batting.where(league: leagueParam).where(yearID: seasonParam.to_i)
+          #team and league and season
+          when !teamParam.empty? && !leagueParam.empty? && !seasonParam.empty?
+            Batting.where(teamID: teamParam).where(league: leagueParam).where(yearID: seasonParam.to_i)
+        end
+      else
+        Batting.all
+      end
     end
 
     def sort_by_slugging_percentage(player1, player2)
@@ -139,6 +174,6 @@ class PlayersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def player_params
-      params.require(:player).permit(:firstName, :lastName, :playerID, :birthYear)
+      params.require(:player).permit(:firstName, :lastName, :playerID, :birthYear, :team, :league, :season)
     end
 end
