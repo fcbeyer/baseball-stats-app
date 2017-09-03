@@ -17,7 +17,7 @@ class PlayersControllerTest < ActionDispatch::IntegrationTest
 
   test "should create player" do
     assert_difference('Player.count') do
-      post players_url, params: { player: { birthYear: @player.birthYear, firstName: @player.firstName, lastName: @player.lastName, playerID: @player.playerID } }
+      post players_url, params: { player: { birthYear: @player.birthYear, firstName: @player.firstName, lastName: @player.lastName, playerID: "apc" } }
     end
 
     assert_redirected_to player_url(Player.last)
@@ -34,7 +34,7 @@ class PlayersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update player" do
-    patch player_url(@player), params: { player: { birthYear: @player.birthYear, firstName: @player.firstName, lastName: @player.lastName, playerID: @player.playerID } }
+    patch player_url(@player), params: { player: { birthYear: @player.birthYear, firstName: @player.firstName, lastName: @player.lastName, playerID: "qotsa" } }
     assert_redirected_to player_url(@player)
   end
 
