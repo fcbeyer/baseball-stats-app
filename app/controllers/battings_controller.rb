@@ -15,6 +15,7 @@ class BattingsController < ApplicationController
 
   # GET /battings/new
   def new
+    find_player
     @batting = Batting.new
   end
 
@@ -25,6 +26,7 @@ class BattingsController < ApplicationController
   # POST /battings
   # POST /battings.json
   def create
+    find_player
     @batting = Batting.new(batting_params)
 
     respond_to do |format|
