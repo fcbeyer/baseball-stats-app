@@ -30,20 +30,20 @@ class BattingsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get edit" do
-    get edit_player_batting_url(@batting)
+    get edit_player_batting_url(@player, @batting)
     assert_response :success
   end
 
   test "should update batting" do
-    patch player_batting_url(@batting), params: { batting: { caughtStealing: @batting.caughtStealing, doubles: @batting.doubles, gamesPlayed: @batting.gamesPlayed, hits: @batting.hits, homeruns: @batting.homeruns, league: @batting.league, playerID: @batting.playerID, runsBattedIn: @batting.runsBattedIn, stolenBases: @batting.stolenBases, teamID: @batting.teamID, triples: @batting.triples, yearID: @batting.yearID } }
-    assert_redirected_to batting_url(@batting)
+    patch player_batting_url(@player, @batting), params: { player_id: @player.id, batting: { caughtStealing: @batting.caughtStealing, doubles: @batting.doubles, gamesPlayed: @batting.gamesPlayed, hits: @batting.hits, homeruns: @batting.homeruns, league: @batting.league, playerID: @batting.playerID, runsBattedIn: @batting.runsBattedIn, stolenBases: @batting.stolenBases, teamID: @batting.teamID, triples: @batting.triples, yearID: @batting.yearID } }
+    assert_redirected_to player_batting_url(@player, @batting)
   end
 
   test "should destroy batting" do
     assert_difference('Batting.count', -1) do
-      delete player_batting_url(@batting)
+      delete player_batting_url(@player, @batting)
     end
 
-    assert_redirected_to player_battings_url
+    assert_redirected_to player_battings_url(@player)
   end
 end

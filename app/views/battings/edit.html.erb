@@ -2,5 +2,5 @@
 
 <%= render 'form', batting: @batting %>
 
-<%= link_to 'Show', @batting %> |
-<%= link_to 'Back', battings_path %>
+<%= link_to 'Show', [@current_player, @batting] %> |
+<%= link_to 'Back', player_battings_path(@current_player) %>

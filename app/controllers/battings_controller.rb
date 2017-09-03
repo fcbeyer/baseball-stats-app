@@ -22,6 +22,7 @@ class BattingsController < ApplicationController
 
   # GET /battings/1/edit
   def edit
+    find_player
   end
 
   # POST /battings
@@ -44,6 +45,7 @@ class BattingsController < ApplicationController
   # PATCH/PUT /battings/1
   # PATCH/PUT /battings/1.json
   def update
+    find_player
     respond_to do |format|
       if @batting.update(batting_params)
         format.html { redirect_to [@current_player, @batting], notice: 'Batting was successfully updated.' }
@@ -58,9 +60,10 @@ class BattingsController < ApplicationController
   # DELETE /battings/1
   # DELETE /battings/1.json
   def destroy
+    find_player
     @batting.destroy
     respond_to do |format|
-      format.html { redirect_to battings_url, notice: 'Batting was successfully destroyed.' }
+      format.html { redirect_to player_battings_url(@current_player), notice: 'Batting was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
