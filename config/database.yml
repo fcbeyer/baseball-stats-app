@@ -84,7 +84,7 @@ test:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
 production:
-  <<: *default
-  database: tester_production
-  username: tester
-  password: <%= ENV['TESTER_DATABASE_PASSWORD'] %>
+  adapter: postgresql
+  database: baseball_production
+  pool: 5
+  timeout: 5000
