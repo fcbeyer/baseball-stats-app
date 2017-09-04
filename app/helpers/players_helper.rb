@@ -12,8 +12,8 @@ module PlayersHelper
     params[:filter] && !params[:filter][:season].empty? ? params[:filter][:season] : 'All'
   end
 
-  def get_career_filter
-    params[:filter] && !params[:filter][:career].empty? ? params[:filter][:career] : 'All'
+  def get_alltime_filter
+    params[:filter] && !params[:filter][:allTime].empty? ? params[:filter][:allTime] : 'All'
   end
 
   def calculate_career_batting_average(player)

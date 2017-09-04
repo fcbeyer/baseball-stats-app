@@ -63,7 +63,7 @@ class PlayersController < ApplicationController
 
   def leaderboard
     #@battings = Batting.all.group(:player_id)
-    @battings = (params[:filter] && !params[:filter][:career].empty?) ? create_career_battings : find_battings_from_params
+    @battings = (params[:filter] && !params[:filter][:allTime].empty?) ? create_career_battings : find_battings_from_params
     @battings = @battings.sort do |a, b|
       aBA = calculate_batting_average(a)
       bBA = calculate_batting_average(b)
@@ -191,6 +191,6 @@ class PlayersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def player_params
-      params.require(:player).permit(:firstName, :lastName, :playerID, :birthYear, :team, :league, :season, :career)
+      params.require(:player).permit(:firstName, :lastName, :playerID, :birthYear, :team, :league, :season, :allTime)
     end
 end

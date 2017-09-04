@@ -11,34 +11,56 @@
       <%= select "filter", "league", options_for_select(leagueOptions, selected: get_league_filter), {prompt: 'All'}, onchange: "$('#filter').submit();" %>
       <%= label_tag "Season" %>
       <%= select "filter", "season", options_for_select(seasonOptions, selected: get_season_filter), {prompt: 'All'}, onchange: "$('#filter').submit();" %>
-      <%= label_tag "Career" %>
-      <%= select "filter", "career", options_for_select(['Yes'], selected: get_career_filter), {prompt: 'No'}, onchange: "$('#filter').submit();" %>
+      <%= label_tag "All Time" %>
+      <%= select "filter", "allTime", options_for_select(['Yes'], selected: get_alltime_filter), {prompt: 'No'}, onchange: "$('#filter').submit();" %>
   <% end %>
   <!-- leaderboard chart code -->
-  <table class="table table-bordered table-responsive table-sm">
-    <thead>
-    <tr>
-      <th>Name</th>
-      <th>Team</th>
-      <th>League</th>
-      <th>Season</th>
-      <th>Batting Average</th>
-      <th>Slugging Percentage</th>
-    </tr>
-    </thead>
+  <% if (params[:filter] && params[:filter][:allTime].empty?) then %>
+    <table class="table table-bordered table-responsive table-sm">
+      <thead>
+      <tr>
+        <th>Name</th>
+        <th>Team</th>
+        <th>League</th>
+        <th>Season</th>
+        <th>Batting Average</th>
+        <th>Slugging Percentage</th>
+      </tr>
+      </thead>
 
-    <tbody>
-    <% @leaderData.each do |player| %>
-        <tr>
-          <td><%= player['firstName'] %> <%= player['lastName'] %></td>
-          <td><%= player['team'] %></td>
-          <td><%= player['league'] %></td>
-          <td><%= player['season'] %></td>
-          <td><%= player['ba'] %></td>
-          <td><%= player['sp'] %></td>
-        </tr>
-    <% end %>
-    </tbody>
-  </table>
+      <tbody>
+      <% @leaderData.each do |player| %>
+          <tr>
+            <td><%= player['firstName'] %> <%= player['lastName'] %></td>
+            <td><%= player['team'] %></td>
+            <td><%= player['league'] %></td>
+            <td><%= player['season'] %></td>
+            <td><%= player['ba'] %></td>
+            <td><%= player['sp'] %></td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <table class="table table-bordered table-responsive table-sm">
+      <thead>
+      <tr>
+        <th>Name</th>
+        <th>Batting Average</th>
+        <th>Slugging Percentage</th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <% @leaderData.each do |player| %>
+          <tr>
+            <td><%= player['firstName'] %> <%= player['lastName'] %></td>
+            <td><%= player['ba'] %></td>
+            <td><%= player['sp'] %></td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+  <% end %>
 </div>
 
