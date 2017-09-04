@@ -12,9 +12,12 @@
 
 ActiveRecord::Schema.define(version: 20170901115715) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "battings", force: :cascade do |t|
     t.string "playerID"
-    t.date "yearID"
+    t.string "yearID"
     t.string "league"
     t.string "teamID"
     t.integer "gamesPlayed"
@@ -36,7 +39,7 @@ ActiveRecord::Schema.define(version: 20170901115715) do
     t.string "firstName"
     t.string "lastName"
     t.string "playerID"
-    t.date "birthYear"
+    t.string "birthYear"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

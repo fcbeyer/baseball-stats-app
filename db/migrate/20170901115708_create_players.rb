@@ -4,7 +4,7 @@ class CreatePlayers < ActiveRecord::Migration[5.1]
       t.string :firstName
       t.string :lastName
       t.string :playerID
-      t.date :birthYear
+      t.string :birthYear
 
       t.timestamps
     end

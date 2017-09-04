@@ -2,7 +2,7 @@ class CreateBattings < ActiveRecord::Migration[5.1]
   def change
     create_table :battings do |t|
       t.string :playerID
-      t.date :yearID
+      t.string :yearID
       t.string :league
       t.string :teamID
       t.integer :gamesPlayed

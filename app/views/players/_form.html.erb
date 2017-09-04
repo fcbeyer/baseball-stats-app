@@ -12,23 +12,23 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :firstName %>
+    <%= form.label :firstName, 'First Name' %>
     <%= form.text_field :firstName, id: :player_firstName %>
   </div>
 
   <div class="field">
-    <%= form.label :lastName %>
+    <%= form.label :lastName, 'Last Name' %>
     <%= form.text_field :lastName, id: :player_lastName %>
   </div>
 
   <div class="field">
-    <%= form.label :playerID %>
+    <%= form.label :playerID, 'Player ID' %>
     <%= form.text_field :playerID, id: :player_playerID %>
   </div>
 
   <div class="field">
-    <%= form.label :birthYear %>
-    <%= form.date_select :birthYear, id: :player_birthYear %>
+    <%= form.label :birthYear, 'Birth Year' %>
+    <%= form.text_field :birthYear, id: :player_birthYear %>
   </div>
 
   <div class="actions">
