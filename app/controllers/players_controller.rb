@@ -65,11 +65,11 @@ class PlayersController < ApplicationController
     #@battings = Batting.all.group(:player_id)
     @battings = (params[:filter] && !params[:filter][:career].empty?) ? create_career_battings : find_battings_from_params
     @battings = @battings.sort do |a, b|
-      aBA = calculate_season_batting_average(a)
-      bBA = calculate_season_batting_average(b)
+      aBA = calculate_batting_average(a)
+      bBA = calculate_batting_average(b)
       case
         when aBA.nil? && bBA.nil?
-          sort_by_slugging_percentage(calculate_season_slugging_percentage(a), calculate_season_slugging_percentage(b))
+          sort_by_slugging_percentage(calculate_slugging_percentage(a), calculate_slugging_percentage(b))
         when aBA.nil? && !bBA.nil?
           1
         when !aBA.nil? && bBA.nil?
@@ -79,7 +79,7 @@ class PlayersController < ApplicationController
         when aBA > bBA
           -1
         else
-          sort_by_slugging_percentage(calculate_season_slugging_percentage(a), calculate_season_slugging_percentage(b))
+          sort_by_slugging_percentage(calculate_slugging_percentage(a), calculate_slugging_percentage(b))
       end
     end
     #okay now that everything is sorted, create the data structure we need for our table
@@ -90,8 +90,8 @@ class PlayersController < ApplicationController
       cur_player = Player.find(batting.player_id)
       @leaderData.push({"firstName" => cur_player.firstName, "lastName" => cur_player.lastName,
                        "team" => batting.teamID, "league" => batting.league,
-                        "season" => batting.yearID, "ba" => calculate_season_batting_average(batting),
-                       "sp" => calculate_season_slugging_percentage(batting)})
+                        "season" => batting.yearID, "ba" => calculate_batting_average(batting),
+                       "sp" => calculate_slugging_percentage(batting)})
     end
   end
 
@@ -101,8 +101,20 @@ class PlayersController < ApplicationController
       @player = Player.find(params[:id])
     end
 
+    #first we group the data by player_id
+    #second we need to loop through each key and for all the values calculate the sums for all the categories needed in our table
+    #create a new array of objects that has all the summed up values
+    #use this new data structure to pass through all the sorting tricking my code into thinking its just like the seasonal data
     def create_career_battings
-      grouped_data = Batting.all.group(:player_id)
+      grouped_data = Batting.all.group_by(&:player_id)
+      career_data = []
+      grouped_data.each do |player_id, array|
+        career_data.push(Batting.new(league: array.first.league, teamID: array.first.teamID, player_id: player_id,
+                         atBats: array.map(&:atBats).compact.sum, hits: array.map(&:hits).compact.sum,
+                         doubles: array.map(&:doubles).compact.sum, triples: array.map(&:triples).compact.sum,
+                         homeruns: array.map(&:homeruns).compact.sum))
+      end
+      return career_data
     end
 
     def find_battings_from_params
@@ -141,10 +153,6 @@ class PlayersController < ApplicationController
       end
     end
 
-    def sort_by_batting_average(player1, player2)
-
-    end
-
     def sort_by_slugging_percentage(player1, player2)
       case
         when player1.nil? && player2.nil?
@@ -162,7 +170,7 @@ class PlayersController < ApplicationController
       end
     end
 
-    def calculate_season_batting_average(batting)
+    def calculate_batting_average(batting)
       #total hits (singles, double, triples, home runs) ÷ At Bats
       if batting.hits and batting.atBats then
         ba = batting.hits.fdiv(batting.atBats)
@@ -170,7 +178,7 @@ class PlayersController < ApplicationController
       end
     end
 
-    def calculate_season_slugging_percentage(batting)
+    def calculate_slugging_percentage(batting)
       #Total Bases ÷ At Bats
       #Total Bases = Singles + (2 x Doubles) + (3 x Triples) + (4 x Home Runs)
       if batting.hits and batting.doubles and batting.triples and batting.homeruns and batting.atBats then
@@ -183,6 +191,6 @@ class PlayersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def player_params
-      params.require(:player).permit(:firstName, :lastName, :playerID, :birthYear, :team, :league, :season)
+      params.require(:player).permit(:firstName, :lastName, :playerID, :birthYear, :team, :league, :season, :career)
     end
 end
