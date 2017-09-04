@@ -21,40 +21,40 @@
 
   <tbody>
   <% @player.battings.each do |batting| %>
-      <tr>
-        <td><%= batting.yearID %></td>
-        <td><%= batting.league %></td>
-        <td><%= batting.teamID %></td>
-        <td><%= batting.gamesPlayed %></td>
-        <td><%= batting.atBats %></td>
-        <td><%= batting.runs %></td>
-        <td><%= batting.hits %></td>
-        <td><%= batting.doubles %></td>
-        <td><%= batting.triples %></td>
-        <td><%= batting.homeruns %></td>
-        <td><%= batting.runsBattedIn %></td>
-        <td><%= batting.stolenBases %></td>
-        <td><%= batting.caughtStealing %></td>
-        <td> <%= calculate_season_batting_average(batting) %></td>
-        <td> <%= calculate_season_slugging_percentage(batting) %></td>
-      </tr>
+    <tr>
+      <td><%= batting.yearID %></td>
+      <td><%= batting.league %></td>
+      <td><%= batting.teamID %></td>
+      <td><%= batting.gamesPlayed %></td>
+      <td><%= batting.atBats %></td>
+      <td><%= batting.runs %></td>
+      <td><%= batting.hits %></td>
+      <td><%= batting.doubles %></td>
+      <td><%= batting.triples %></td>
+      <td><%= batting.homeruns %></td>
+      <td><%= batting.runsBattedIn %></td>
+      <td><%= batting.stolenBases %></td>
+      <td><%= batting.caughtStealing %></td>
+      <td> <%= calculate_season_batting_average(batting) %></td>
+      <td> <%= calculate_season_slugging_percentage(batting) %></td>
+    </tr>
   <% end %>
-      <tr class="CareerTotals">
-        <td></td>
-        <td></td>
-        <td></td>
-        <td><%= @player.battings.map(&:gamesPlayed).compact.sum %></td>
-        <td><%= @player.battings.map(&:atBats).compact.sum %></td>
-        <td><%= @player.battings.map(&:runs).compact.sum %></td>
-        <td><%= @player.battings.map(&:hits).compact.sum %></td>
-        <td><%= @player.battings.map(&:doubles).compact.sum %></td>
-        <td><%= @player.battings.map(&:triples).compact.sum %></td>
-        <td><%= @player.battings.map(&:homeruns).compact.sum %></td>
-        <td><%= @player.battings.map(&:runsBattedIn).compact.sum %></td>
-        <td><%= @player.battings.map(&:stolenBases).compact.sum %></td>
-        <td><%= @player.battings.map(&:caughtStealing).compact.sum %></td>
-        <td><%= number_with_precision(calculate_career_batting_average(@player)) %></td>
-        <td><%= number_with_precision(calculate_career_slugging_percentage(@player)) %></td>
-      </tr>
+    <tr class="CareerTotals">
+      <td></td>
+      <td></td>
+      <td></td>
+      <td><%= @player.battings.map(&:gamesPlayed).compact.sum %></td>
+      <td><%= @player.battings.map(&:atBats).compact.sum %></td>
+      <td><%= @player.battings.map(&:runs).compact.sum %></td>
+      <td><%= @player.battings.map(&:hits).compact.sum %></td>
+      <td><%= @player.battings.map(&:doubles).compact.sum %></td>
+      <td><%= @player.battings.map(&:triples).compact.sum %></td>
+      <td><%= @player.battings.map(&:homeruns).compact.sum %></td>
+      <td><%= @player.battings.map(&:runsBattedIn).compact.sum %></td>
+      <td><%= @player.battings.map(&:stolenBases).compact.sum %></td>
+      <td><%= @player.battings.map(&:caughtStealing).compact.sum %></td>
+      <td><%= number_with_precision(calculate_career_batting_average(@player)) %></td>
+      <td><%= number_with_precision(calculate_career_slugging_percentage(@player)) %></td>
+    </tr>
   </tbody>
 </table>

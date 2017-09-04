@@ -33,7 +33,7 @@ class BattingsController < ApplicationController
     @batting.player_id = @current_player.id
     respond_to do |format|
       if @batting.save
-        format.html { redirect_to [@current_player, @batting], notice: 'Batting was successfully created.' }
+        format.html { redirect_to player_url(@current_player), notice: 'Season was successfully created.' }
         format.json { render :show, status: :created, location: @batting }
       else
         format.html { render :new }
@@ -49,7 +49,7 @@ class BattingsController < ApplicationController
     @batting.player_id = @current_player.id
     respond_to do |format|
       if @batting.update(batting_params)
-        format.html { redirect_to [@current_player, @batting], notice: 'Batting was successfully updated.' }
+        format.html { redirect_to player_url(@current_player), notice: 'Season was successfully updated.' }
         format.json { render :show, status: :ok, location: @batting }
       else
         format.html { render :edit }
@@ -64,7 +64,7 @@ class BattingsController < ApplicationController
     find_player
     @batting.destroy
     respond_to do |format|
-      format.html { redirect_to player_battings_url(@current_player), notice: 'Batting was successfully destroyed.' }
+      format.html { redirect_to player_battings_url(@current_player), notice: 'Season was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

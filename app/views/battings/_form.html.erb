@@ -1,7 +1,7 @@
 <%= form_with(model: [@current_player, batting], local: true) do |form| %>
   <% if batting.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(batting.errors.count, "error") %> prohibited this batting from being saved:</h2>
+      <h2><%= pluralize(batting.errors.count, "error") %> prohibited this season from being saved:</h2>
 
       <ul>
       <% batting.errors.full_messages.each do |message| %>
@@ -12,13 +12,13 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :playerID %>
+    <%= form.label :playerID, 'Player ID' %>
     <%= form.text_field :playerID, id: :batting_playerID %>
   </div>
 
   <div class="field">
-    <%= form.label :yearID %>
-    <%= form.date_select :yearID, id: :batting_yearID %>
+    <%= form.label :yearID, 'Year' %>
+    <%= form.date_select :yearID, id: :batting_yearID, discard_day: true, discard_month: true %>
   </div>
 
   <div class="field">
@@ -27,13 +27,23 @@
   </div>
 
   <div class="field">
-    <%= form.label :teamID %>
+    <%= form.label :teamID, 'Team' %>
     <%= form.text_field :teamID, id: :batting_teamID %>
   </div>
 
   <div class="field">
-    <%= form.label :gamesPlayed %>
+    <%= form.label :gamesPlayed, 'Games Played' %>
     <%= form.number_field :gamesPlayed, id: :batting_gamesPlayed %>
+  </div>
+
+  <div class="field">
+    <%= form.label :atBats, 'At Bats' %>
+    <%= form.number_field :atBats, id: :batting_atBats %>
+  </div>
+
+  <div class="field">
+    <%= form.label :runs %>
+    <%= form.number_field :runs, id: :batting_runs %>
   </div>
 
   <div class="field">
@@ -57,21 +67,21 @@
   </div>
 
   <div class="field">
-    <%= form.label :runsBattedIn %>
+    <%= form.label :runsBattedIn, 'RBIs' %>
     <%= form.number_field :runsBattedIn, id: :batting_runsBattedIn %>
   </div>
 
   <div class="field">
-    <%= form.label :stolenBases %>
+    <%= form.label :stolenBases, 'Stolen Bases' %>
     <%= form.number_field :stolenBases, id: :batting_stolenBases %>
   </div>
 
   <div class="field">
-    <%= form.label :caughtStealing %>
+    <%= form.label :caughtStealing, 'Caught Stealing' %>
     <%= form.number_field :caughtStealing, id: :batting_caughtStealing %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit "Save Season"%>
   </div>
 <% end %>

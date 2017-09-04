@@ -3,8 +3,13 @@
   <div class="card-body">
     <h4 class="card-title"><%= @player.firstName %> <%= @player.lastName %></h4>
     <h6 class="card-subtitle mb-2 text-muted">Born: <%= @player.birthYear %></h6>
-    <p class="card-text"><%= render 'battings/player_battings' %></p>
+    <% if (@player.battings.length > 0) then %>
+      <p class="card-text"><%= render 'battings/player_battings' %></p>
+    <% else %>
+        <p class="card-text">No player data found!</p>
+    <% end %>
     <a href=<%= edit_player_path(@player) %> class="card-link">Edit</a>
     <a href=<%= players_path %> class="card-link">Back</a>
+    <a href=<%= new_player_batting_path(@player) %> class="card-link">Add a Season</a>
   </div>
 </div>
