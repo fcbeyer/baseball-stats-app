@@ -22,9 +22,6 @@ test:
 
 production:
   adapter: postgresql
-  host: localhost
-  encoding: unicode
-  database: my_production_database
+  database: baseball_production
   pool: 5
-  username:
-  password:
+  timeout: 5000
