@@ -1,24 +1,13 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is an app to display baseball stats for a pre-determined set of data. The ability to add more data exists as well
 
 Things you may want to cover:
 
-* Ruby version
+* Uses Ruby 2.4 and Rails 5.1
 
-* System dependencies
+* Requires postgresql for dev/test/prod development
 
-* Configuration
+* Uses standard rake/rails commands nothing unique added
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* To setup your environment: after running db:migrate make sure to run db:seed
