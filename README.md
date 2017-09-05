@@ -2,9 +2,11 @@
 
 This is an app to display baseball stats for a pre-determined set of data. The ability to add more data exists as well
 
-Things you may want to cover:
+A deployed version of this app exists in Heroku: https://rocketball.herokuapp.com/
 
-* Uses Ruby 2.4 and Rails 5.1
+FYI for anyone wanting to clone:
+
+* Built using Ruby 2.4 and Rails 5.1
 
 * Requires postgresql for dev/test/prod development
 
